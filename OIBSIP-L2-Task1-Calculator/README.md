@@ -33,9 +33,6 @@ OIBSIP/
 2. Open the `OIBSIP-L2-Task1-Calculator` folder.
 3. Open `index.html` in any modern web browser.
 
-## 📸 Screenshot
-Add a screenshot of your calculator here (optional).
-
 ## 🎯 Learning Outcomes
 - Improved understanding of HTML, CSS, and JavaScript.
 - Learned DOM manipulation and event handling.
