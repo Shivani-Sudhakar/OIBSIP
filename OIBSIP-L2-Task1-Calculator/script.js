@@ -15,7 +15,7 @@ class Calculator {
             this.clear();
             return;
         }
-        
+
         if (this.currentOperand !== '' && this.currentOperand !== '0') {
             if (this.currentOperand.length === 1) {
                 if (this.expression.length === 0) {
@@ -40,7 +40,7 @@ class Calculator {
         }
         if (this.currentOperand === 'Error: Div by 0') this.clear();
         if (number === '.' && this.currentOperand.includes('.')) return;
-        
+
         if (this.currentOperand === '0' && number !== '.') {
             this.currentOperand = number.toString();
         } else {
@@ -52,8 +52,8 @@ class Calculator {
         if (this.isResult) {
             this.isResult = false;
         }
-        if (this.currentOperand === 'Error: Div by 0') return;
-        
+        if (this.currentOperand === 'Error') return;
+
         if (this.currentOperand === '') {
             // Change the last operator if user typed consecutive operators
             if (this.expression.length > 0) {
@@ -122,12 +122,12 @@ class Calculator {
         }
 
         let result = tokens[0];
-        
+
         // Prevent extremely long floats from floating point arithmetic inaccuracies
         if (result && result.includes('.')) {
             const parts = result.split('.');
             if (parts[1].length > 10) {
-                 result = parseFloat(parseFloat(result).toFixed(10)).toString();
+                result = parseFloat(parseFloat(result).toFixed(10)).toString();
             }
         }
 
@@ -144,14 +144,14 @@ class Calculator {
         const stringNumber = number.toString();
         const integerDigits = parseFloat(stringNumber.split('.')[0]);
         const decimalDigits = stringNumber.split('.')[1];
-        
+
         let integerDisplay;
         if (isNaN(integerDigits)) {
             integerDisplay = '';
         } else {
             integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 });
         }
-        
+
         if (decimalDigits != null) {
             return `${integerDisplay}.${decimalDigits}`;
         } else {
@@ -168,7 +168,7 @@ class Calculator {
                 displayStr += this.getDisplayNumber(token);
             }
         }
-        
+
         if (this.currentOperand !== '') {
             displayStr += this.getDisplayNumber(this.currentOperand);
         }
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
     buttons.forEach(button => {
         button.addEventListener('click', () => {
             const action = button.dataset.action;
-            
+
             if (!action) {
                 // If no action data attribute, it's a number
                 calculator.appendNumber(button.dataset.value);
@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (action === 'delete') {
                 calculator.delete();
             }
-            
+
             calculator.updateDisplay();
         });
     });
