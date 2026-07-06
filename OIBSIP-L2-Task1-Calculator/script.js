@@ -11,7 +11,7 @@ class Calculator {
     }
 
     delete() {
-        if (this.isResult || this.currentOperand === 'Error: Div by 0') {
+        if (this.isResult || this.currentOperand === 'Error') {
             this.clear();
             return;
         }
@@ -38,7 +38,7 @@ class Calculator {
         if (this.isResult) {
             this.clear();
         }
-        if (this.currentOperand === 'Error: Div by 0') this.clear();
+        if (this.currentOperand === 'Error') this.clear();
         if (number === '.' && this.currentOperand.includes('.')) return;
 
         if (this.currentOperand === '0' && number !== '.') {
@@ -91,7 +91,7 @@ class Calculator {
                 if (tokens[i] === '×') res = prev * next;
                 if (tokens[i] === '÷') {
                     if (next === 0) {
-                        this.currentOperand = 'Error: Div by 0';
+                        this.currentOperand = 'Error';
                         this.expression = [];
                         this.isResult = true;
                         return;
@@ -137,7 +137,7 @@ class Calculator {
     }
 
     getDisplayNumber(number) {
-        if (number === 'Error: Div by 0') return number;
+        if (number === 'Error') return number;
         if (number === '') return '';
         if (number === '-') return '-';
 
